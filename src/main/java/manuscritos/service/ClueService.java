@@ -37,7 +37,8 @@ public class ClueService {
         String joined = String.join("\n", request.getManuscript());
         String hash = sha256Hex(joined);
 
-        Optional<ManuscriptEntity> existing = repo.finByContentHash(hash);
+        //Optional<ManuscriptEntity> existing = repo.finByContentHash(hash);
+        Optional<ManuscriptEntity> existing = repo.findByContentHash(hash);
         if (existing.isPresent()) {
             return existing.get().isClueFound();
         }
@@ -51,7 +52,11 @@ public class ClueService {
         repo.save(e);
         return clue;
     }
-
+    public long countClueFound() { return repo.countByClueFoundTrue(); }
+    public long countNoClue() { return repo.countByClueFoundFalse(); }
+/*
     public long countClueFound() { return repo.countByClueFountTrue(); }
     public long countNoClue() { return repo.countByClueFountFalse(); }
+ */
+
 }
