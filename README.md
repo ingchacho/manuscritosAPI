@@ -106,10 +106,15 @@ URL consola (opcional):
 http://localhost:8080/h2-console
 ```
 
-# 🌍 4. Despliegue en AWS EC2
+# 🌍 4. Despliegue en AWS EC2 y Ambiente de desarrollo local:
 ```text
 URL pública:
 
-http://18.223.109.1:8080/clue
-http://18.223.109.1:8080/stats
+URL API POST 
+http://3.17.60.1:8080/clue
+http://localhost:8080/clue
+
+URL API GET 
+http://3.17.60.1:8080/stats
+http://localhost:8080/stats
 ```
