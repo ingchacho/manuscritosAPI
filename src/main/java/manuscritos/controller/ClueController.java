@@ -23,6 +23,15 @@ public class ClueController {
         else return ResponseEntity.status(403).build();
     }
 
+
+    @PostMapping("/clue/fast")
+    public ResponseEntity<Void> clueFast(@Valid @RequestBody ManuscriptRequest req) {
+        boolean found = service.analyzeAndStoreFast(req); // usa el método optimizado
+        if (found) return ResponseEntity.ok().build();
+        else return ResponseEntity.status(403).build();
+    }
+
+
     @GetMapping("/stats")
     public ResponseEntity<StatsDto> stats() {
         long found = service.countClueFound();

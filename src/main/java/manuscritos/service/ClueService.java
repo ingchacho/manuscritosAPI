@@ -4,6 +4,7 @@ import manuscritos.model.ManuscriptEntity;
 import manuscritos.model.ManuscriptRequest;
 import manuscritos.repository.ManuscriptRepository;
 import manuscritos.util.ClueUtils;
+import manuscritos.util.ClueUtilsTwoLoops;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,6 +53,27 @@ public class ClueService {
         repo.save(e);
         return clue;
     }
+
+    public boolean analyzeAndStoreFast(ManuscriptRequest req) {
+        boolean found = ClueUtilsTwoLoops.containsArtifactClueTwoLoops(req.getManuscript());
+        saveFastResult(req, found);
+        //repository.saveResult(req, found);
+        return found;
+    }
+
+    private void saveFastResult(ManuscriptRequest req, boolean found) {
+        String joined = String.join("\n", req.getManuscript());
+        String hash = sha256Hex(joined);
+
+        ManuscriptEntity e = new ManuscriptEntity();
+        e.setContent(joined);
+        e.setContentHash(hash);
+        e.setClueFound(found);
+        e.setCreatedAt(Instant.now());
+        repo.save(e);
+    }
+
+
     public long countClueFound() { return repo.countByClueFoundTrue(); }
     public long countNoClue() { return repo.countByClueFoundFalse(); }
 /*
