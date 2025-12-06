@@ -118,3 +118,16 @@ URL API GET
 http://3.17.60.1:8080/stats
 http://localhost:8080/stats
 ```
+
+# 5. Consideraciones y decisiones de diseño e implementación
+```text
+Para esta solución se eligió una arquitectura ligera en Spring Boot desplegada sobre AWS EC2 porque
+el enunciado exige soportar cargas extremadamente variables desde 100 hasta 1 millón de peticiones
+por segundo, lo cual requiere control total del entorno, capacidad de tunear el servidor, usar autoscaling
+y evitar los cold starts y límites de concurrencia propios de AWS Lambda. Además, se escogió EC2 en capa
+gratuita porque permite un despliegue simple, directo y estable sin necesidad de servicios adicionales ni
+complejidad operacional. Por otra parte, se utilizó base de datos H2 embebida porque el reto no exige
+persistencia real en la nube y privilegia la simplicidad, H2 DB elimina la necesidad de administrar un motor
+externo, reduce tiempos de despliegue y facilita la ejecución local y remota sin configuración adicional,
+manteniendo el enfoque en la lógica del algoritmo y el rendimiento de la API, tal como pide la prueba técnica.
+```
