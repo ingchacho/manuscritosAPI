@@ -131,3 +131,18 @@ persistencia real en la nube y privilegia la simplicidad, H2 DB elimina la neces
 externo, reduce tiempos de despliegue y facilita la ejecución local y remota sin configuración adicional,
 manteniendo el enfoque en la lógica del algoritmo y el rendimiento de la API, tal como pide la prueba técnica.
 ```
+
+
+# 6. Información del Autor
+```text
+Developer by:
+EFREN MORENO VALOYES
+Ingeniero de sistemas – UCC
+Desarrollador de software Senior Full Stack
+Especialista en Ingeniería del Software – PUJ
+Magister en Ingeniería del Software - PUJ
+Magister en administración – UNAL
+Email: efrenmorenovaloyes@gmail.com
+
+
+```
